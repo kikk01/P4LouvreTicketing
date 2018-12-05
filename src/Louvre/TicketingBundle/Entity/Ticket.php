@@ -42,6 +42,17 @@ class Ticket
      */
     private $reducedPrice;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Louvre\TicketingBundle\Entity\Command")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $command;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Louvre\TicketingBundle\Entity\Visitor", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $visitor;
 
     /**
      * Get id
@@ -123,6 +134,30 @@ class Ticket
     public function getReducedPrice()
     {
         return $this->reducedPrice;
+    }
+
+    public function setCommand(Command $command)
+    {
+        $this->command = $command;
+
+        return $this;
+    }
+
+    public function getCommand()
+    {
+        return $this->command;
+    }
+
+    public function setVisitor(Visitor $visitor)
+    {
+        $this->visitor = $visitor;
+
+        return $this;
+    }
+
+    public function getVisitor()
+    {
+        return $this->visitor;
     }
 }
 

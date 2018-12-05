@@ -28,6 +28,12 @@ class Command
      */
     private $nCommand;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Louvre\TicketingBundle\Entity\User", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
 
     /**
      * Get id
@@ -61,6 +67,17 @@ class Command
     public function getNCommand()
     {
         return $this->nCommand;
+    }
+
+    public function setUser(User $user)
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+    public function getUser()
+    {
+        return $this->user;
     }
 }
 
