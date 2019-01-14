@@ -156,4 +156,3 @@ class Visitor
         return $this->dateBirth;
     }
 }
-

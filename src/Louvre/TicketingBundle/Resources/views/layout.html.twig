@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        {% block head_css %}
+        {% endblock %}
+        <title>{% block title %}Louvre{% endblock %}</title>
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 d-flex flex-column justify-content-center">
+                        <img style="max-width:100%"src="{{asset('img/louvrePyramid.jpg')}}">
+                        <h1>Réservation de billet</h1>
+                    </div>        
+                    <div class="col-sm-6">
+                        <img style="max-width:100%"src="{{asset('img/pyramid.jpg')}}">
+                        <p class="text-right">
+                            <a href='https://fr.freepik.com/vecteurs-libre/pyramide-du-louvre-polygon_982191.htm'>Designed by Ibrandify</a>
+                        </p>
+                    </div>
+                </div>
+            </div>           
+        </header>
+
+        {% block body %}
+        {% endblock %}
+
+        {% block javascript %}
+        {% endblock %}    
+    </body>
+
+</html>

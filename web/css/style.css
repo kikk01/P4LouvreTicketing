@@ -1,0 +1,25 @@
+.ticket {
+    float: left;
+    padding: 10px;
+    width: 230px;
+}
+.clearBoth {
+    clear: both;
+}
+.picker__header .picker__select--year {
+    width: 30%;
+}
+.picker__header .picker__select--month,
+.picker__header .picker__select--year {
+    height: 2.5em;
+}
+.form-group .picker{
+    width: unset;
+}
+.picker .picker__holder{
+    width: 283px;
+}
+
+.picker--drop-up{
+    top: calc(100% - 391px); 
+}

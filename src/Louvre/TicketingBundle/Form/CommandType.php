@@ -5,6 +5,12 @@ namespace Louvre\TicketingBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Louvre\TicketingBundle\Form\UserType;
+use Louvre\TicketingBundle\Form\TicketType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class CommandType extends AbstractType
 {
@@ -13,7 +19,23 @@ class CommandType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nCommand')->add('user');
+        $builder
+            ->add('user',       UserType::class)
+            ->add('dateVisit',      DateType::class, array(
+                'widget'        => 'single_text',
+                'html5'         => 'false',
+                'attr'          => ['class' => 'js-datepicker'], 
+                'label'         => 'Date de la visite',
+                'format'        => 'yyyy/MM/dd'
+            ))
+            ->add('quantity',    IntegerType::class)
+            ->add('tickets',     Collectiontype::class, array(
+                'entry_type'    => TicketType::class,
+                'allow_add'     => true,
+                'allow_delete'  => true,
+                'label'         => false
+            ))
+            ->add('Valider',    SubmitType::class);
     }
     
     /**

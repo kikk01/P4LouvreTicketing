@@ -5,6 +5,9 @@ namespace Louvre\TicketingBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Louvre\TicketingBundle\Form\VisitorType;
 
 class TicketType extends AbstractType
 {
@@ -13,8 +16,20 @@ class TicketType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('dateVisit')->add('type')->add('reducedPrice')->add('command')->add('visitor');
-    }/**
+        $builder
+            ->add('type',           ChoiceType::class, array(
+                'choices'   => array(
+                    'Journée'       => true,
+                    'Demi-journée'  => false
+                ),
+            ))
+            ->add('reducedPrice',   CheckboxType::class, array(
+                'required' => false
+            ))
+            ->add('visitor',        VisitorType::class);
+    }
+    
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)

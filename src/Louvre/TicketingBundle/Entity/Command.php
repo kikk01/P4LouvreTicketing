@@ -3,6 +3,7 @@
 namespace Louvre\TicketingBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Command
@@ -29,11 +30,34 @@ class Command
     private $nCommand;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="Date_visit", type="date")
+     */
+    private $dateVisit;
+
+    /**
+     * @ORM\Column(name="quantity", type="integer")
+     */
+    private $quantity;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Louvre\TicketingBundle\Entity\User", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Louvre\TicketingBundle\Entity\Ticket", mappedBy="Command", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $tickets;
+
+
+    public function __construct()
+    {
+        $this->tickets = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -69,6 +93,54 @@ class Command
         return $this->nCommand;
     }
 
+    /**
+     * Set dateVisit
+     *
+     * @param \DateTime $dateVisit
+     *
+     * @return Command
+     */
+    public function setDateVisit($dateVisit)
+    {
+        $this->dateVisit = $dateVisit;
+
+        return $this;
+    }
+
+    /**
+     * Get dateVisit
+     *
+     * @return \DateTime
+     */
+    public function getDateVisit()
+    {
+        return $this->dateVisit;
+    }
+
+    /**
+     * Set quantity
+     *
+     * @param \integer $quantity
+     *
+     * @return Command
+     */
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
+
+        return $this;
+    }
+
+    /**
+     * Get quantity
+     *
+     * @return int
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+
     public function setUser(User $user)
     {
         $this->user = $user;
@@ -78,6 +150,25 @@ class Command
     public function getUser()
     {
         return $this->user;
+    }
+
+    public function addTicket(Ticket $ticket)
+    {
+        $this->tickets[] = $ticket;
+
+        $ticket->setCommand($this);
+
+        return $this;
+    }
+
+    public function removeTicket(Ticket $ticket)
+    {
+        $this->tickets->removeElement($ticket);
+    }
+
+    public function getTickets()
+    {
+        return $this->tickets;
     }
 }
 

@@ -22,13 +22,6 @@ class Ticket
     private $id;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="Date_visit", type="date")
-     */
-    private $dateVisit;
-
-    /**
      * @var bool
      *
      * @ORM\Column(name="type", type="boolean")
@@ -43,7 +36,7 @@ class Ticket
     private $reducedPrice;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Louvre\TicketingBundle\Entity\Command")
+     * @ORM\ManyToOne(targetEntity="Louvre\TicketingBundle\Entity\Command", inversedBy="tickets")
      * @ORM\JoinColumn(nullable=false)
      */
     private $command;
@@ -62,30 +55,6 @@ class Ticket
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set dateVisit
-     *
-     * @param \DateTime $dateVisit
-     *
-     * @return Ticket
-     */
-    public function setDateVisit($dateVisit)
-    {
-        $this->dateVisit = $dateVisit;
-
-        return $this;
-    }
-
-    /**
-     * Get dateVisit
-     *
-     * @return \DateTime
-     */
-    public function getDateVisit()
-    {
-        return $this->dateVisit;
     }
 
     /**
