@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Order
+ * Command
  *
- * @ORM\Table(name="order")
- * @ORM\Entity(repositoryClass="Louvre\TicketingBundle\Repository\OrderRepository")
+ * @ORM\Table(name="command")
+ * @ORM\Entity(repositoryClass="Louvre\TicketingBundle\Repository\CommandRepository")
  */
-class Order
+class Command
 {
     /**
      * @var int
@@ -25,9 +25,9 @@ class Order
     /**
      * @var string
      *
-     * @ORM\Column(name="n_order", type="string", length=10, unique=true)
+     * @ORM\Column(name="n_command", type="string", length=10, unique=true)
      */
-    private $nOrder;
+    private $nCommand;
 
     /**
      * @var \DateTime
@@ -42,13 +42,13 @@ class Order
     private $quantity;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Louvre\TicketingBundle\Entity\User", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Louvre\TicketingBundle\Entity\User", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="Louvre\TicketingBundle\Entity\Ticket", mappedBy="order", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="Louvre\TicketingBundle\Entity\Ticket", mappedBy="Command", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $tickets;
@@ -70,27 +70,27 @@ class Order
     }
 
     /**
-     * Set nOrder
+     * Set nCommand
      *
-     * @param string $nOrder
+     * @param string $nCommand
      *
-     * @return Order
+     * @return Command
      */
-    public function setNOrder($nOrder)
+    public function setNCommand($nCommand)
     {
-        $this->nOrder = $nOrder;
+        $this->nCommand = $nCommand;
 
         return $this;
     }
 
     /**
-     * Get nOrder
+     * Get nCommand
      *
      * @return string
      */
-    public function getNOrder()
+    public function getNCommand()
     {
-        return $this->nOrder;
+        return $this->nCommand;
     }
 
     /**
@@ -98,7 +98,7 @@ class Order
      *
      * @param \DateTime $dateVisit
      *
-     * @return Order
+     * @return Command
      */
     public function setDateVisit($dateVisit)
     {
@@ -122,7 +122,7 @@ class Order
      *
      * @param \integer $quantity
      *
-     * @return Order
+     * @return Command
      */
     public function setQuantity($quantity)
     {
@@ -156,7 +156,7 @@ class Order
     {
         $this->tickets[] = $ticket;
 
-        $ticket->setOrder($this);
+        $ticket->setCommand($this);
 
         return $this;
     }

@@ -36,10 +36,10 @@ class Ticket
     private $reducedPrice;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Louvre\TicketingBundle\Entity\Order", inversedBy="tickets")
+     * @ORM\ManyToOne(targetEntity="Louvre\TicketingBundle\Entity\Command", inversedBy="tickets")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $order;
+    private $command;
 
     /**
      * @ORM\OneToOne(targetEntity="Louvre\TicketingBundle\Entity\Visitor", cascade={"persist", "remove"})
@@ -105,6 +105,18 @@ class Ticket
         return $this->reducedPrice;
     }
 
+    public function setCommand(Command $command)
+    {
+        $this->command = $command;
+
+        return $this;
+    }
+
+    public function getCommand()
+    {
+        return $this->command;
+    }
+
     public function setVisitor(Visitor $visitor)
     {
         $this->visitor = $visitor;
@@ -116,28 +128,5 @@ class Ticket
     {
         return $this->visitor;
     }
-
-    /**
-     * Set order
-     *
-     * @param \Louvre\TicketingBundle\Entity\Order $order
-     *
-     * @return Ticket
-     */
-    public function setOrder(\Louvre\TicketingBundle\Entity\Order $order)
-    {
-        $this->order = $order;
-
-        return $this;
-    }
-
-    /**
-     * Get order
-     *
-     * @return \Louvre\TicketingBundle\Entity\Order
-     */
-    public function getOrder()
-    {
-        return $this->order;
-    }
 }
+
