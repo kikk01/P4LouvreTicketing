@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    console.log('test');
     // Récupération de l'élément qui contient le protoype
     let $container = $('div#louvre_ticketingbundle_command_tickets');
     let counter = 0;
@@ -45,21 +46,32 @@ $(document).ready(function() {
     }
 
     function addDatePicker() {
-        var date = new Date();
-        $('.js-datepicker').pickadate(
-        {     
-            disable:[           
-                new Date(date.getFullYear(), 4, 1),     // disable 1st May(cause count begin january = 0) of  current year
-                new Date(date.getFullYear()+1, 4, 1),   // and disable 1st may of next year
-                new Date(date.getFullYear(), 10, 1),    // disable 1st Nov
-                new Date(date.getFullYear()+1, 10, 1),
-                new Date(date.getFullYear(), 11, 25),   // disable 25th Dec
-                new Date(date.getFullYear()+1, 11, 25),
-                2, 0                                       // disable tuesday & Sunday
-            ],
-            min: true,                                  // true = today     false remove limit
-            max: new Date(date.setFullYear(date.getFullYear()+1)), 
+        $('.js-datepickerBirth').pickadate(
+        {    
+            // allow picker to appear at the top of input if it is a the bottom of page
+            onOpen: function(){
+                var container  = $(this.$node).next('.picker');
+                var classState = exceedsBottomViewport(container, '.picker__box');
+                
+                if(classState){
+                    container.addClass('picker--drop-up');
+                }
+            },
+            selectMonths: true,
+            selectYears: true,
+            selectYears: 90, 
+            max: new Date(), 
             format: 'dd/mm/yyyy' 
-        })
-    }
+        })   
+        
+        function exceedsBottomViewport(container, elem){
+            var dropdown  = container.find(elem),
+            dropdown_top    = dropdown.offset().top - document.documentElement.scrollTop,
+            dropdown_height = dropdown.height(),
+            viewport_height = document.documentElement.clientHeight;
+            
+            return dropdown_top + dropdown_height > viewport_height;
+        }
+    }  
 });
+

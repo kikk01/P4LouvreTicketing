@@ -4,6 +4,7 @@ namespace Louvre\TicketingBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Order
@@ -38,6 +39,8 @@ class Order
 
     /**
      * @ORM\Column(name="quantity", type="integer")
+     * @Assert\Range(
+     *      min = 0)
      */
     private $quantity;
 

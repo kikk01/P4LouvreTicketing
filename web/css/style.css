@@ -12,6 +12,7 @@
 .picker__header .picker__select--month,
 .picker__header .picker__select--year {
     height: 2.5em;
+    border-radius: 5px;
 }
 .form-group .picker{
     width: unset;
@@ -19,7 +20,6 @@
 .picker .picker__holder{
     width: 283px;
 }
-
 .picker--drop-up{
     top: calc(100% - 391px); 
 }
