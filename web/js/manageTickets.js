@@ -1,12 +1,13 @@
 $(document).ready(function() {
-    console.log('test');
     // Récupération de l'élément qui contient le protoype
     let $container = $('div#louvre_ticketingbundle_command_tickets');
     let counter = 0;
+
     displayTickets();
     addDatePicker();
     // Récupération de la valeur de l'input à chaque fois qu'elle change
     $('#louvre_ticketingbundle_command_quantity').on('input', displayTickets);
+    
     function displayTickets() {
         
         counter = $container.children().length; // Définition du compteur  de ticket
@@ -35,6 +36,7 @@ $(document).ready(function() {
             addDatePicker();
         }
     };
+
     function createNewWidget() {
         let template = $container.attr('data-prototype')
             .replace(/__name__label__/g, 'Ticket n°' + (counter+1))

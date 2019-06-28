@@ -1,3 +1,6 @@
+.font-red{
+    color: red;
+}
 .ticket {
     float: left;
     padding: 10px;
@@ -22,4 +25,8 @@
 }
 .picker--drop-up{
     top: calc(100% - 391px); 
+}
+#reduce-price-message{
+    visibility: hidden;
+    margin-top: -2em;
 }

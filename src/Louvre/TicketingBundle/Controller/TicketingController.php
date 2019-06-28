@@ -15,8 +15,8 @@ class TicketingController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $order = new Order();
-        $form = $this->createForm(OrderType::class, $order);
+        $order  = new Order();
+        $form   = $this->createForm(OrderType::class, $order);
 
         $form->handleRequest($request);
 

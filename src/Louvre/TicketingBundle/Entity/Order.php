@@ -40,9 +40,9 @@ class Order
     /**
      * @ORM\Column(name="quantity", type="integer")
      * @Assert\Range(
-     *      min = 0)
+     *      min = 1)
      */
-    private $quantity;
+    private $quantity = 1;
 
     /**
      * @ORM\ManyToOne(targetEntity="Louvre\TicketingBundle\Entity\User", cascade={"persist"})

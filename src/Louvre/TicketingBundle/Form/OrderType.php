@@ -28,7 +28,7 @@ class OrderType extends AbstractType
                 'label'         => 'Date de la visite',
                 'format'        => 'yyyy/MM/dd'
             ))
-            ->add('quantity',    IntegerType::class)
+            ->add('quantity',    IntegerType::class, ['attr' => ['min' => 1]])
             ->add('tickets',     Collectiontype::class, array(
                 'entry_type'    => TicketType::class,
                 'allow_add'     => true,
