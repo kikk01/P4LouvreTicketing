@@ -12,7 +12,7 @@ $(document).ready(function(){
                 //return false
             }
         })
-        console.log(displayMessage);
+
         if(displayMessage === true){
             $('#reduce-price-message').css('visibility', 'visible');    
         }
