@@ -12,7 +12,7 @@ use Louvre\TicketingBundle\Form\TicketType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class OrderType extends AbstractType
+class CommandType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -44,7 +44,7 @@ class OrderType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Louvre\TicketingBundle\Entity\Order'
+            'data_class' => 'Louvre\TicketingBundle\Entity\Command'
         ));
     }
 
