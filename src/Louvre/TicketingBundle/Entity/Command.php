@@ -26,7 +26,7 @@ class Command
     /**
      * @var string
      *
-     * @ORM\Column(name="n_command", type="string", length=10, unique=true)
+     * @ORM\Column(name="n_command", type="string", length=50, unique=true)
      */
     private $nCommand;
 
@@ -51,7 +51,7 @@ class Command
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="Louvre\TicketingBundle\Entity\Ticket", mappedBy="command", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="Louvre\TicketingBundle\Entity\Ticket", mappedBy="command", cascade={"persist"}, orphanRemoval=true)
      * @ORM\JoinColumn(nullable=false)
      */
     private $tickets;
@@ -155,6 +155,13 @@ class Command
         return $this->user;
     }
 
+    /**
+     * Add Ticket
+     * 
+     * @param Ticket $ticket
+     * 
+     * return Command
+     */
     public function addTicket(Ticket $ticket)
     {
         $this->tickets[] = $ticket;

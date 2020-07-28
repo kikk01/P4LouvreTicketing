@@ -6,18 +6,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Louvre\TicketingBundle\Entity\Command;
-use Louvre\TicketingBundle\Entity\Commande;
-use Louvre\TicketingBundle\Entity\Ticket;
-use Louvre\TicketingBundle\Entity\User;
 use Louvre\TicketingBundle\Service\SoldService;
 use Louvre\TicketingBundle\Form\CommandType;
+use Louvre\TicketingBundle\Service\CommandService;
 
 class TicketingController extends Controller
 {
     /**
      * @Route("/", name="home")
      */
-    public function indexAction(Request $request, SoldService $soldService)
+    public function indexAction(Request $request, SoldService $soldService, CommandService $commandService)
     {
         $command = new Command;
         $form   = $this->createForm(CommandType::class, $command);
@@ -26,6 +24,9 @@ class TicketingController extends Controller
 
         if ($form->isSubmitted() && $form->isValid())
         {
+            $soldService->updateCount($command);
+            $commandService->setNumCommand($command);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($command);
             $em->flush();
