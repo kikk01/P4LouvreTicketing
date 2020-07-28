@@ -2832,16 +2832,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v3.4.39",
+            "version": "v3.4.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "29ccc948a87d72c991fff9dbb92bd64f728e7b75"
+                "reference": "21e652ffdb8c908c8606f923b903be5b8af21e01"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/29ccc948a87d72c991fff9dbb92bd64f728e7b75",
-                "reference": "29ccc948a87d72c991fff9dbb92bd64f728e7b75",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/21e652ffdb8c908c8606f923b903be5b8af21e01",
+                "reference": "21e652ffdb8c908c8606f923b903be5b8af21e01",
                 "shasum": ""
             },
             "require": {
@@ -2931,7 +2931,7 @@
                 "cache/integration-tests": "dev-master",
                 "doctrine/annotations": "~1.0",
                 "doctrine/cache": "~1.6",
-                "doctrine/data-fixtures": "1.0.*",
+                "doctrine/data-fixtures": "^1.1",
                 "doctrine/dbal": "~2.4",
                 "doctrine/doctrine-bundle": "~1.4",
                 "doctrine/orm": "~2.4,>=2.4.5",
@@ -2984,7 +2984,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2020-03-30T06:25:29+00:00"
+            "time": "2020-07-24T03:49:18+00:00"
         },
         {
             "name": "twig/twig",
