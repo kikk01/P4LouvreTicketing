@@ -29,12 +29,13 @@ class CommandType extends AbstractType
                 'format'        => 'yyyy/MM/dd'
             ))
             ->add('quantity',    IntegerType::class, ['attr' => ['min' => 1]])
-            ->add('tickets',     Collectiontype::class, array(
+            ->add('tickets',     Collectiontype::class, [
                 'entry_type'    => TicketType::class,
                 'allow_add'     => true,
+                'by_reference'  => false,
                 'allow_delete'  => true,
                 'label'         => false
-            ))
+            ])
             ->add('Valider',    SubmitType::class);
     }
     

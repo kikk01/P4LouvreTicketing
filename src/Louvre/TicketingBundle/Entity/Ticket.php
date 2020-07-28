@@ -36,7 +36,7 @@ class Ticket
     private $reducedPrice;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Louvre\TicketingBundle\Entity\Command", inversedBy="tickets")
+     * @ORM\ManyToOne(targetEntity="Louvre\TicketingBundle\Entity\Command", inversedBy="tickets", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $command;
@@ -126,7 +126,7 @@ class Ticket
      */
     public function setCommand(\Louvre\TicketingBundle\Entity\Command $command)
     {
-        $this->Command = $command;
+        $this->command = $command;
 
         return $this;
     }
